@@ -4,30 +4,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
 public class Main {
-    //public static ArrayList<Doctors> arr;
     public static ArrayList<Hospitals> hospitalArr;
     public static ArrayList<Doctors> doctorArr;
     public static HashTable hashTable;
     public static RedBlackTree tree;
 
-    public void main(String args) throws IOException {
+    public static void main(String[] args) throws IOException {
         _init_();
-        switch (args) {
+        /*switch (args) {
             case "add" -> add(args);
             case "remove" -> remove(args);
             case "search" -> search(args);
             case "print" -> print();
             default -> System.out.println("Unknown args");
-        }
-        /*Application.launch();
+        }*/
+        //Application.launch();
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите ключи поиска(номер больницы и специальность)");
         int numHospital = scan.nextInt();
@@ -36,24 +29,18 @@ public class Main {
         ArrayList<Hospitals> result = search(numHospital, speciality);
 
         for (Hospitals hospital: result) {
-            System.out.println(hospital.surname + " " + hospital.name + " " + hospital.patronymic + " номер кабинета: " + hospital.numCabinet);
-        }*/
+            System.out.println(hospital.surname + " " + hospital.name + " " + hospital.patronymic + " стаж: "
+                    + doctorArr.get(hospital.numLine - 2).experience + " лет" + " кабинет №" + hospital.numCabinet);
+        }
+        /*System.out.println("Добавление(введите через пробел: номер больницы, ФИО, номер кабинета, стаж, специальность):");
+        String input = scan.nextLine();
+        add(input);
+
+        System.out.println("Удаление(введите через пробел: номер больницы, ФИО, номер кабинета, стаж, специальность):");
+        input = scan.nextLine();
+        remove(input);*/
     }
 
-    /*@Override
-    public void start(Stage stage) throws Exception {
-        stage.setTitle("Медконсультант");
-        stage.setHeight(600);
-        stage.setWidth(700);
-        stage.setResizable(false);
-        Label label = new Label("Hello Медконсультант");
-        label.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(label);
-        stage.setScene(scene);
-        Image image = new Image("C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\example\\med_consultant\\res\\icon.png");
-        stage.getIcons().add(image);
-        stage.show();
-    }*/
     private static void _init_() throws IOException {
         hospitalArr = new ArrayList<>();
         doctorArr = new ArrayList<>();
@@ -129,6 +116,8 @@ public class Main {
         addTree(hospitalArr.get(hospitalArr.size() - 1));
         doctorArr.add(doc);
         addHashTable(doctorArr.get(doctorArr.size() - 1));
+        addToFileHospitals(hospital);
+        addToFileDoctors(doc);
     }
     private static void addTree(Hospitals hospital){
         tree.insert(hospital.numHospital, hospital);
@@ -138,17 +127,27 @@ public class Main {
         int hash = hashTable.getConvolutionHash(fio);
         hashTable.add(hash, doctor);
     }
+    private static void addToFileHospitals(Hospitals hospital){
+
+    }
+    private static void addToFileDoctors(Doctors doctor){
+
+    }
     private static void remove(String args){
         Scanner scan = new Scanner(args);
         Doctors doctor = new Doctors();
-        int numHospital = scan.nextInt();
-        doctor.surname = scan.next();
-        doctor.name = scan.next();
-        doctor.patronymic = scan.next();
+        Hospitals hospital = new Hospitals();
+        hospital.numCabinet = scan.nextInt();
+        hospital.surname = doctor.surname = scan.next();
+        hospital.name = doctor.name = scan.next();
+        hospital.patronymic = doctor.patronymic = scan.next();
+        hospital.numCabinet = scan.nextInt();
         doctor.experience = scan.nextInt();
         doctor.speciality = scan.nextLine();
-        removeTree(numHospital);
+        removeTree(hospital.numHospital);
         removeHashTable(doctor);
+        removeFromFileHospitals(hospital);
+        removeFromFileDoctors(doctor);
     }
     private static void removeTree(int numHospital){
         tree.deleteNode(numHospital);
@@ -157,6 +156,12 @@ public class Main {
         String fio = doctor.surname + doctor.name + doctor.patronymic;
         int hash = hashTable.getConvolutionHash(fio);
         hashTable.del(hash, fio);
+    }
+    private static void removeFromFileHospitals(Hospitals hospital){
+
+    }
+    private static void removeFromFileDoctors(Doctors doctor){
+
     }
     private static ArrayList<Hospitals> search(String args){
         int numHospital;
