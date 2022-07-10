@@ -10,6 +10,6 @@ module com.example.med_consultant {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.med_consultant to javafx.fxml;
-    exports com.example.med_consultant;
+    opens com.med_consultant to javafx.fxml;
+    exports com.med_consultant;
 }

@@ -1,18 +1,18 @@
-package com.example.med_consultant;
+package com.med_consultant;
 
 import java.util.ArrayList;
 //import java.util.HashSet;
 import java.util.Objects;
 
 public class HashTable {
-    private ArrayList<ArrayList<Doctors>> hashTableArr;
+    private final ArrayList<ArrayList<Doctors>> hashTableArr;
     //private HashSet<String> setKey;
     private final int h;
     
     
     public HashTable()
     {
-        h = 100;
+        h = 1000;
         hashTableArr = new ArrayList<>();
         for (int i = 0; i < h; i++) {
             hashTableArr.add(new ArrayList<>());
@@ -66,14 +66,32 @@ public class HashTable {
 
     public void add(int hash, Doctors doctor)
     {
+        /*if(hash > h) {
+            hashTableArr = addSize();
+        }*/
         hashTableArr.get(hash).add(doctor);
     }
+    /*private ArrayList<ArrayList<Doctors>> addSize(){
+        h *= 1.5;
+        ArrayList<ArrayList<Doctors>> temp = new ArrayList<>();
+        for (int i = 0; i < h; i++) {
+            temp.add(new ArrayList<>());
+            for (int j = 0; j < hashTableArr.get(i).size(); j++) {
+                String fio = hashTableArr.get(i).get(j).surname + hashTableArr.get(i).get(j).name
+                        + hashTableArr.get(i).get(j).patronymic;
+                int hash = getConvolutionHash(fio);
+                temp.get(hash).add(hashTableArr.get(i).get(j));
+            }
+
+        }
+        return temp;
+    }*/
 
     public int collision(int hash, String key)
     {
         for (int i = 0; i < hashTableArr.get(hash).size(); i++) {
             Doctors doc = hashTableArr.get(hash).get(i);
-            if (Objects.equals(doc.surname + doc.name + doc.patronymic,key)) {
+            if (Objects.equals(doc.getSurname() + doc.getName() + doc.getPatronymic(),key)) {
                 return i;
             }
         }
@@ -82,16 +100,16 @@ public class HashTable {
 
     public void del(int hash, String key)
     {
-        if (hashTableArr.get(hash).size() > 0) {
-        int id = collision(hash, key);
-        if (id == -1) {
-            System.out.println("Значение с ключём " + key + " не найдено!");
-        }
-        else {
-            hashTableArr.get(hash).remove(id);
-        }
+            if (hashTableArr.get(hash).size() > 0) {
+            int id = collision(hash, key);
+            if (id == -1) {
+                System.out.println("Значение с ключём " + key + " не найдено!");
+            }
+            else {
+                hashTableArr.get(hash).remove(id);
+            }
 
-    }
+        }
     }
 
     public Doctors getStruct(int hash, String key)
@@ -99,7 +117,7 @@ public class HashTable {
         int id = collision(hash, key);
         if (id == -1) {
             Doctors doctor = new Doctors();
-            doctor.numLine = -1;
+            doctor.setNumLine(-1);
             return doctor;
         }
         else {
@@ -126,12 +144,12 @@ public class HashTable {
 
     public void printDoctors(Doctors doctors)
     {
-        if (doctors.numLine == -1) {
+        if (doctors.getNumLine() == -1) {
             System.out.println("Значения с таким ключем не найдено");
         }
         else {
-            System.out.println(" Сторка №" + doctors.numLine + " " + doctors.speciality + " " + doctors.surname + " " + doctors.name + " "
-                    + doctors.patronymic);
+            System.out.println(" Сторка №" + doctors.getNumLine() + " " + doctors.getSpeciality() + " " + doctors.getSurname() + " " + doctors.getName() + " "
+                    + doctors.getPatronymic());
         }
     }
 }

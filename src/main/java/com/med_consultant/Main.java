@@ -1,4 +1,4 @@
-package com.example.med_consultant;
+package com.med_consultant;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +11,7 @@ public class Main {
     public static HashTable hashTable;
     public static RedBlackTree tree;
 
-    public static void main(String[] args) throws IOException {
+    public void main(String[] args) throws IOException {
         _init_();
         /*switch (args) {
             case "add" -> add(args);
@@ -19,9 +19,11 @@ public class Main {
             case "search" -> search(args);
             case "print" -> print();
             default -> System.out.println("Unknown args");
-        }*/
-        //Application.launch();
-        Scanner scan = new Scanner(System.in);
+        }
+        Application.launch();*/
+
+
+        /*Scanner scan = new Scanner(System.in);
         System.out.println("Введите ключи поиска(номер больницы и специальность)");
         int numHospital = scan.nextInt();
         String speciality = scan.nextLine();
@@ -31,17 +33,10 @@ public class Main {
         for (Hospitals hospital: result) {
             System.out.println(hospital.surname + " " + hospital.name + " " + hospital.patronymic + " стаж: "
                     + doctorArr.get(hospital.numLine - 2).experience + " лет" + " кабинет №" + hospital.numCabinet);
-        }
-        /*System.out.println("Добавление(введите через пробел: номер больницы, ФИО, номер кабинета, стаж, специальность):");
-        String input = scan.nextLine();
-        add(input);
-
-        System.out.println("Удаление(введите через пробел: номер больницы, ФИО, номер кабинета, стаж, специальность):");
-        input = scan.nextLine();
-        remove(input);*/
+        }*/
     }
 
-    private static void _init_() throws IOException {
+    public static void _init_() throws IOException {
         hospitalArr = new ArrayList<>();
         doctorArr = new ArrayList<>();
         hashTable = new HashTable();
@@ -53,8 +48,8 @@ public class Main {
     }
     private static void readAll() throws IOException {
         String encoding = System.getProperty("console.encoding", "utf-8");
-        String fileDoctors = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\example\\med_consultant\\res\\doctors.txt";
-        String fileHospitals = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\example\\med_consultant\\res\\hospitals.txt";
+        String fileDoctors = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\doctors.txt";
+        String fileHospitals = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\hospitals.txt";
         Path doctors = Paths.get(fileDoctors);
         Path hospitals = Paths.get(fileHospitals);
         Scanner scanDoctors = new Scanner(doctors, encoding);
@@ -67,18 +62,18 @@ public class Main {
             Doctors doc = new Doctors();
             Hospitals hospital = new Hospitals();
 
-            hospital.numLine = i + 2;
-            hospital.numHospital = scanHospitals.nextInt();
-            hospital.surname = scanHospitals.next();
-            doc.surname = scanDoctors.next();
-            hospital.name = scanHospitals.next();
-            doc.name = scanDoctors.next();
-            hospital.patronymic = scanHospitals.next();
-            doc.patronymic = scanDoctors.next();
-            hospital.numCabinet = scanHospitals.nextInt();
-            if(hospital.numLine < 401)scanHospitals.nextLine();
-            doc.experience = scanDoctors.nextInt();
-            doc.speciality = scanDoctors.nextLine();
+            hospital.setNumLine(i + 2);
+            hospital.setNumHospital(scanHospitals.nextInt());
+            hospital.setSurname(scanHospitals.next());
+            doc.setSurname(scanDoctors.next());
+            hospital.setName(scanHospitals.next());
+            doc.setName(scanDoctors.next());
+            hospital.setPatronymic(scanHospitals.next());
+            doc.setPatronymic(scanDoctors.next());
+            hospital.setNumCabinet(scanHospitals.nextInt());
+            if(hospital.getNumLine() < 401)scanHospitals.nextLine();
+            doc.setExperience(scanDoctors.nextInt());
+            doc.setSpeciality(scanDoctors.nextLine());
 
             hospitalArr.add(hospital);
             doctorArr.add(doc);
@@ -87,30 +82,33 @@ public class Main {
     private static void buildHashTable() {
         //HashSet<String> copy;
         for (Doctors doctor : doctorArr) {
-            String fio = doctor.surname + doctor.name + doctor.patronymic;
+            String fio = doctor.getSurname() + doctor.getName() + doctor.getPatronymic();
             int hash = hashTable.getConvolutionHash(fio);
             hashTable.add(hash, doctor);
         }
     }
     private static void buildTree() {
         for(Hospitals hospital: hospitalArr){
-            tree.insert(hospital.numHospital, hospital);
+            tree.insert(hospital.getNumHospital(), hospital);
         }
     }
-    private static void add(String input) throws IOException {
+    private static void add(String input) {
         Scanner scanDoctors = new Scanner(input);
         Scanner scanHospitals = new Scanner(input);
         Doctors doc = new Doctors();
         Hospitals hospital = new Hospitals();
 
         //hospital.numLine = i + 2;
-        hospital.numHospital = scanHospitals.nextInt();
-        doc.surname = hospital.surname = scanHospitals.next();
-        doc.name = hospital.name = scanHospitals.next();
-        doc.patronymic = hospital.patronymic = scanHospitals.next();
-        hospital.numCabinet = scanHospitals.nextInt();
-        doc.experience = scanDoctors.nextInt();
-        doc.speciality = scanDoctors.nextLine();
+        hospital.setNumHospital(scanHospitals.nextInt());
+        hospital.setSurname(scanHospitals.next());
+        doc.setSurname(hospital.getSurname());
+        hospital.setName(scanHospitals.next());
+        doc.setName(hospital.getName());
+        hospital.setPatronymic(scanHospitals.next());
+        doc.setPatronymic(hospital.getPatronymic());
+        hospital.setNumCabinet(scanHospitals.nextInt());
+        doc.setExperience(scanDoctors.nextInt());
+        doc.setSpeciality(scanDoctors.nextLine());
 
         hospitalArr.add(hospital);
         addTree(hospitalArr.get(hospitalArr.size() - 1));
@@ -120,10 +118,10 @@ public class Main {
         addToFileDoctors(doc);
     }
     private static void addTree(Hospitals hospital){
-        tree.insert(hospital.numHospital, hospital);
+        tree.insert(hospital.getNumHospital(), hospital);
     }
     private static void addHashTable(Doctors doctor){
-        String fio = doctor.surname + doctor.name + doctor.patronymic;
+        String fio = doctor.getSurname() + doctor.getName() + doctor.getPatronymic();
         int hash = hashTable.getConvolutionHash(fio);
         hashTable.add(hash, doctor);
     }
@@ -137,14 +135,17 @@ public class Main {
         Scanner scan = new Scanner(args);
         Doctors doctor = new Doctors();
         Hospitals hospital = new Hospitals();
-        hospital.numCabinet = scan.nextInt();
-        hospital.surname = doctor.surname = scan.next();
-        hospital.name = doctor.name = scan.next();
-        hospital.patronymic = doctor.patronymic = scan.next();
-        hospital.numCabinet = scan.nextInt();
-        doctor.experience = scan.nextInt();
-        doctor.speciality = scan.nextLine();
-        removeTree(hospital.numHospital);
+        hospital.setNumCabinet(scan.nextInt());
+        doctor.setSurname(scan.next());
+        hospital.setSurname(doctor.getSurname());
+        doctor.setName(scan.next());
+        hospital.setName(doctor.getName());
+        doctor.setPatronymic(scan.next());
+        hospital.setPatronymic(doctor.getPatronymic());
+        hospital.setNumCabinet(scan.nextInt());
+        doctor.setExperience(scan.nextInt());
+        doctor.setSpeciality(scan.nextLine());
+        removeTree(hospital.getNumHospital());
         removeHashTable(doctor);
         removeFromFileHospitals(hospital);
         removeFromFileDoctors(doctor);
@@ -153,7 +154,7 @@ public class Main {
         tree.deleteNode(numHospital);
     }
     private static void removeHashTable(Doctors doctor){
-        String fio = doctor.surname + doctor.name + doctor.patronymic;
+        String fio = doctor.getSurname() + doctor.getName() + doctor.getPatronymic();
         int hash = hashTable.getConvolutionHash(fio);
         hashTable.del(hash, fio);
     }
@@ -178,14 +179,14 @@ public class Main {
         ArrayList<Hospitals> res = tree.searchTree(numHospital).arr;
         for(int i = 0; i < res.size(); i++){
             Hospitals hospital = res.get(i);
-            String fio = hospital.surname + hospital.name + hospital.patronymic;
+            String fio = hospital.getSurname() + hospital.getName() + hospital.getPatronymic();
             int hash = hashTable.getConvolutionHash(fio);
             int id = hashTable.collision(hash, fio);
             boolean flag = true;
             if(id != -1){
                 for(int j = id; j < hashTable.getHashTableArr().get(hash).size(); j++){
                     Doctors doc = hashTable.getHashTableArr().get(hash).get(j);
-                    if(doc.speciality.equals(speciality)){
+                    if(doc.getSpeciality().equals(speciality)){
                         flag = false;
                         break;
                     }

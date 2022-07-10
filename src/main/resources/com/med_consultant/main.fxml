@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.Controller">
+   <children>
+      <AnchorPane prefHeight="700.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="250.0" text="Врачи">
+               <font>
+                  <Font name="Roboto Light" size="32.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableDoctors" layoutY="50.0" prefHeight="600.0" prefWidth="600.0">
+              <columns>
+                <TableColumn fx:id="surnameColumn" prefWidth="125.0" text="Фамилия" />
+                <TableColumn fx:id="nameColumn" prefWidth="125.0" text="Имя" />
+                  <TableColumn fx:id="patronymicColumn" prefWidth="125.0" text="Отчество" />
+                  <TableColumn fx:id="experienceColumn" prefWidth="75.0" text="Стаж" />
+                  <TableColumn fx:id="specialityColumn" prefWidth="150.0" text="Специальность" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="600.0" prefHeight="700.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="250.0" text="Больницы">
+               <font>
+                  <Font name="Roboto Light" size="32.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableHospitals" layoutY="50.0" prefHeight="600.0" prefWidth="600.0">
+              <columns>
+                  <TableColumn fx:id="numHospitalColumn" prefWidth="125.0" text="Номер больницы" />
+                <TableColumn fx:id="surnameColumn2" prefWidth="125.0" text="Фамилия" />
+                <TableColumn fx:id="nameColumn2" prefWidth="100.0" text="Имя" />
+                  <TableColumn fx:id="patronymicColumn2" prefWidth="125.0" text="Отчество" />
+                  <TableColumn fx:id="numCabinetColumn" prefWidth="125.0" text="Номер кабинета" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <Button layoutX="500.0" layoutY="665.0" mnemonicParsing="false" onAction="#remove" text="Удалить" />
+      <Button layoutX="650.0" layoutY="665.0" mnemonicParsing="false" onAction="#search" text="Поиск" />
+      <Button layoutX="330.0" layoutY="665.0" mnemonicParsing="false" onAction="#add" text="Добавить" />
+      <Button layoutX="800.0" layoutY="665.0" mnemonicParsing="false" onAction="#debug" text="Отладка" />
+   </children>
+</AnchorPane>

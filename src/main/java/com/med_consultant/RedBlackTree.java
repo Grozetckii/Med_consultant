@@ -1,4 +1,4 @@
-package com.example.med_consultant;
+package com.med_consultant;
 
 import java.util.ArrayList;
 
