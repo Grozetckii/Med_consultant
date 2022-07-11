@@ -11,13 +11,13 @@
             <Font name="Roboto Light" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="200.0" layoutY="70.0" prefWidth="300.0" />
-      <TextField layoutX="200.0" layoutY="100.0" prefWidth="300.0" />
-      <TextField layoutX="200.0" layoutY="130.0" prefWidth="300.0" />
-      <TextField layoutX="200.0" layoutY="160.0" prefWidth="300.0" />
-      <TextField layoutX="200.0" layoutY="190.0" prefWidth="300.0" />
-      <TextField layoutX="200.0" layoutY="220.0" prefWidth="300.0" />
-      <TextField layoutX="200.0" layoutY="250.0" prefWidth="300.0" />
+      <TextField fx:id="numHospital" layoutX="200.0" layoutY="70.0" prefWidth="300.0" />
+      <TextField fx:id="surname" layoutX="200.0" layoutY="100.0" prefWidth="300.0" />
+      <TextField fx:id="name" layoutX="200.0" layoutY="130.0" prefWidth="300.0" />
+      <TextField fx:id="patronymic" layoutX="200.0" layoutY="160.0" prefWidth="300.0" />
+      <TextField fx:id="numCabinet" layoutX="200.0" layoutY="190.0" prefWidth="300.0" />
+      <TextField fx:id="experience" layoutX="200.0" layoutY="220.0" prefWidth="300.0" />
+      <TextField fx:id="speciality" layoutX="200.0" layoutY="250.0" prefWidth="300.0" />
       <Label layoutX="50.0" layoutY="70.0" text="Номер больницы">
          <font>
             <Font name="Roboto Light" size="15.0" />
@@ -48,6 +48,6 @@
          <font>
             <Font name="Roboto Light" size="15.0" />
          </font></Label>
-      <Button layoutX="516.0" layoutY="250.0" mnemonicParsing="false" text="Добавить" />
+      <Button fx:id="add" layoutX="516.0" layoutY="250.0" mnemonicParsing="false" onAction="#clickAdd" text="Добавить" />
    </children>
 </AnchorPane>

@@ -11,17 +11,15 @@ public class Main {
     public static HashTable hashTable;
     public static RedBlackTree tree;
 
-    public void main(String[] args) throws IOException {
+    public static void main(String args, String input) throws IOException {
         _init_();
-        /*switch (args) {
-            case "add" -> add(args);
-            case "remove" -> remove(args);
-            case "search" -> search(args);
+        switch (args) {
+            case "add" -> add(input);
+            case "remove" -> remove(input);
+            case "search" -> search(input);
             case "print" -> print();
             default -> System.out.println("Unknown args");
         }
-        Application.launch();*/
-
 
         /*Scanner scan = new Scanner(System.in);
         System.out.println("Введите ключи поиска(номер больницы и специальность)");
@@ -131,7 +129,7 @@ public class Main {
     private static void addToFileDoctors(Doctors doctor){
 
     }
-    private static void remove(String args){
+    private static void remove(String args) throws IOException {
         Scanner scan = new Scanner(args);
         Doctors doctor = new Doctors();
         Hospitals hospital = new Hospitals();
@@ -158,11 +156,32 @@ public class Main {
         int hash = hashTable.getConvolutionHash(fio);
         hashTable.del(hash, fio);
     }
-    private static void removeFromFileHospitals(Hospitals hospital){
+    private static void removeFromFileHospitals(Hospitals hospital) throws IOException {
+        String encoding = System.getProperty("console.encoding", "utf-8");
+        String fileHospitals = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\hospitals.txt";
+        Path hospitals = Paths.get(fileHospitals);
+        Scanner scanHospital = new Scanner(hospitals, encoding);
+        //File tempHospital = new File("res\\tempHospitals.txt");
+        //Scanner hospitalsWrite = new Scanner(tempHospital, encoding);
+        int len = scanHospital.nextInt();
+        while(hospital.getNumLine() < len){
+            scanHospital.nextLine();
+        }
+        scanHospital.remove();
 
     }
-    private static void removeFromFileDoctors(Doctors doctor){
-
+    private static void removeFromFileDoctors(Doctors doctor) throws IOException {
+        String encoding = System.getProperty("console.encoding", "utf-8");
+        String fileDoctors = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\doctors.txt";
+        Path doctors = Paths.get(fileDoctors);
+        Scanner scanDoctor = new Scanner(doctors, encoding);
+        //File tempDoctors = new File("res\\tempDoctors.txt");
+        //Scanner doctorsWrite = new Scanner(tempDoctors, encoding);
+        int len = scanDoctor.nextInt();
+        while(doctor.getNumLine() < len){
+            scanDoctor.nextLine();
+        }
+        scanDoctor.remove();
     }
     private static ArrayList<Hospitals> search(String args){
         int numHospital;

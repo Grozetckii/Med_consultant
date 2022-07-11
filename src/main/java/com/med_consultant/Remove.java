@@ -7,10 +7,9 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
-public class Add implements Initializable {
+public class Remove implements Initializable {
     @FXML
     private TextField numHospital;
     @FXML
@@ -22,15 +21,18 @@ public class Add implements Initializable {
     @FXML
     private TextField numCabinet;
     @FXML
-    private Button add;
+    private TextField experience;
+    @FXML
+    private TextField speciality;
+    @FXML
+    private Button removeButton;
 
     @FXML
-    public void clickAdd() throws IOException {
-        String input = numHospital.getText() + " " + surname.getText() + " " + name.getText() + " " +
-                patronymic.getText() + " " + numCabinet.getText();
-        Main.main("add", input);
-
-    };
+    public void clickButton() throws IOException {
+        String input = numHospital.getText() + surname.getText() + name.getText() + patronymic.getText()
+                + numCabinet.getText() + experience.getText() + speciality.getText();
+        Main.main("remove", input);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

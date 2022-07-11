@@ -28,16 +28,31 @@ public class Application extends javafx.application.Application {
         add.show();
     }
 
-    public static void remove(){
-
+    public static void remove() throws IOException {
+        Stage remove = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("remove.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        remove.setTitle("Удаление");
+        remove.setScene(scene);
+        remove.show();
     }
 
-    public static void search(){
-
+    public static void search() throws IOException {
+        Stage search = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("search.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        search.setTitle("Поиск");
+        search.setScene(scene);
+        search.show();
     }
 
-    public static void debug(){
-
+    public static void debug() throws IOException {
+        Stage debug = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("debug.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        debug.setTitle("Отладка");
+        debug.setScene(scene);
+        debug.show();
     }
 
     public static void main(String[] args) {

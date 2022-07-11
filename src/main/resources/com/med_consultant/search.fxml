@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="150.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.Search">
+    <children>
+        <Label layoutX="230.0" layoutY="10.0" text="Найти врача">
+            <font>
+                <Font name="Roboto Light" size="24.0" />
+            </font>
+        </Label>
+        <TextField layoutX="200.0" layoutY="70.0" prefWidth="100.0" />
+        <TextField layoutX="200.0" layoutY="100.0" prefWidth="300.0" />
+        <Label layoutX="50.0" layoutY="70.0" text="Номер больницы">
+            <font>
+                <Font name="Roboto Light" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="50.0" layoutY="100.0" text="Специальность">
+            <font>
+                <Font name="Roboto Light" size="15.0" />
+            </font></Label>
+        <Button layoutX="516.0" layoutY="100.0" mnemonicParsing="false" text="Найти" />
+    </children>
+</AnchorPane>

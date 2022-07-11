@@ -39,20 +39,12 @@ public class Controller implements Initializable {
     private TableColumn<Hospitals, Integer> numCabinetColumn;
 
     @FXML
-    public void add() throws IOException {
-        Application.add();
-    }
+    public void add() throws IOException {Application.add();}
     @FXML
-    public void remove(){
-        System.out.println("удаление");
-    }
+    public void remove() throws IOException {Application.remove();}
     @FXML
-    public void search(){
-        System.out.println("поиск");
-    }
-    @FXML void debug(){
-        System.out.println("отладка");
-    }
+    public void search() throws IOException {Application.search();}
+    @FXML void debug() throws IOException {Application.debug();}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

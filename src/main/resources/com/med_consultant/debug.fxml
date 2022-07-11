@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.Debug">
+    <children>
+        <Label layoutX="450.0" layoutY="10.0" text="Отладка">
+            <font>
+                <Font name="Roboto Light" size="24.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
