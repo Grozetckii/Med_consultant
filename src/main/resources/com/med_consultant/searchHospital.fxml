@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.med_consultant.frontend.SearchHospitals"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="472.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.SearchHospitalsController">
+   <children>
+      <Label layoutX="123.0" layoutY="20.0" text="Найти всех врачей по больнице">
+         <font>
+            <Font name="Roboto Light" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="170.0" layoutY="67.0" text="Номер больницы">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numHospital" layoutX="323.0" layoutY="67.0" prefHeight="26.0" prefWidth="105.0" />
+      <Button layoutX="275.0" layoutY="112.0" mnemonicParsing="false" onAction="#clickSearchHospital" text="Найти" />
+      <TableView fx:id="tableHospital" layoutY="195.0" prefHeight="277.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="surnameColumn" prefWidth="202.59997862577438" text="Фамилия" />
+          <TableColumn fx:id="nameColumn" minWidth="0.199981689453125" prefWidth="140.3999481201172" text="Имя" />
+            <TableColumn fx:id="patronymicColumn" prefWidth="168.4000244140625" text="Отчество" />
+            <TableColumn fx:id="numCabinetColumn" prefWidth="92.20001220703125" text="Кабинет" />
+        </columns>
+      </TableView>
+      <Label fx:id="error" layoutX="235.0" layoutY="158.0" prefHeight="18.0" prefWidth="130.0" />
+   </children>
 </AnchorPane>

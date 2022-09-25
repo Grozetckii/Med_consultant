@@ -4,30 +4,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.SearchDoctor">
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.SearchDoctorController">
    <children>
       <Label layoutX="180.0" layoutY="10.0" text="Найти врача">
          <font>
             <Font name="Roboto Light" size="24.0" />
          </font></Label>
-      <TextField layoutX="180.0" layoutY="100.0" prefWidth="300.0" />
-      <TextField layoutX="180.0" layoutY="135.0" prefWidth="300.0" />
-      <TextField layoutX="180.0" layoutY="170.0" prefWidth="300.0" />
-      <Label layoutX="50.0" layoutY="100.0" text="Имя">
+      <TextField fx:id="surname" layoutX="158.0" layoutY="102.0" prefWidth="300.0" />
+      <TextField fx:id="name" layoutX="158.0" layoutY="137.0" prefWidth="300.0" />
+      <TextField fx:id="patronymic" layoutX="158.0" layoutY="172.0" prefWidth="300.0" />
+      <Label layoutX="45.0" layoutY="139.0" text="Имя">
          <font>
-            <Font name="Roboto Light" size="24.0" />
+            <Font name="Roboto Light" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="135.0" text="Фамилия">
+      <Label layoutX="45.0" layoutY="104.0" text="Фамилия">
          <font>
-            <Font name="Roboto Light" size="24.0" />
+            <Font name="Roboto Light" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="170.0" text="Отчество">
+      <Label layoutX="45.0" layoutY="174.0" text="Отчество">
          <font>
-            <Font name="Roboto Light" size="24.0" />
+            <Font name="Roboto Light" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="220.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Найти" />
+      <Button layoutX="215.0" layoutY="235.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="25.0" prefWidth="70.0" text="Найти" />
    </children>
 </AnchorPane>

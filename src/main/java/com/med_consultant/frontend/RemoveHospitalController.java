@@ -1,4 +1,4 @@
 package com.med_consultant.frontend;
 
-public class AddHospital {
+public class RemoveHospitalController {
 }

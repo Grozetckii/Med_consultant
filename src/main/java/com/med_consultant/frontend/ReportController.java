@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Search implements Initializable {
+public class ReportController implements Initializable {
     @FXML
     private TextField numHospital;
     @FXML

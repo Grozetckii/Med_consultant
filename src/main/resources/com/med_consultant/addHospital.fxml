@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.med_consultant.frontend.AddHospital"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="327.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.AddHospitalController">
+   <children>
+      <Label layoutX="145.0" layoutY="14.0" text="Добавить врача в больницу">
+         <font>
+            <Font name="Roboto Light" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="88.0" text="Номер больницы">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="118.0" text="Фамилия">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="148.0" text="Имя">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="178.0" text="Отчество">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="208.0" text="Номер кабинета">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="301.0" layoutY="86.0" prefHeight="26.0" prefWidth="220.0" />
+      <TextField layoutX="301.0" layoutY="116.0" prefHeight="26.0" prefWidth="220.0" />
+      <TextField layoutX="301.0" layoutY="146.0" prefHeight="26.0" prefWidth="220.0" />
+      <TextField layoutX="301.0" layoutY="176.0" prefHeight="26.0" prefWidth="220.0" />
+      <TextField layoutX="301.0" layoutY="206.0" prefHeight="26.0" prefWidth="220.0" />
+      <Button layoutX="274.0" layoutY="268.0" mnemonicParsing="false" text="Найти" />
+   </children>
 </AnchorPane>

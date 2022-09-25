@@ -1,9 +1,7 @@
 package com.med_consultant.backend;
 
-import com.med_consultant.backend.Doctors;
 
 import java.util.ArrayList;
-//import java.util.HashSet;
 import java.util.Objects;
 
 public class HashTable {

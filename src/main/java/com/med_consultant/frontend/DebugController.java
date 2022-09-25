@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Debug implements Initializable {
+public class DebugController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

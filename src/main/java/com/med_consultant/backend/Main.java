@@ -190,7 +190,7 @@ public class Main {
         }
         scanDoctor.remove();
     }
-    private static ArrayList<Hospitals> search(String args){
+    /*private static ArrayList<Hospitals> search(String args){
         int numHospital;
         String speciality;
         Scanner scan = new Scanner(args);
@@ -200,7 +200,7 @@ public class Main {
         scan.next();
         speciality = scan.nextLine();
         return search(numHospital, speciality);
-    }
+    }*/
     public static ArrayList<Hospitals> search(int numHospital, String speciality){
         ArrayList<Hospitals> res = tree.searchTree(numHospital).arr;
         for(int i = 0; i < res.size(); i++){
@@ -228,7 +228,11 @@ public class Main {
         }
         return res;
     }
-    private static void print(){
+    public static void searchDoctor(String surname, String name, String patronymic){
 
+    }
+
+    public static ArrayList<Hospitals> searchHospital(int numHospital){
+        return tree.searchTree(numHospital).arr;
     }
 }
