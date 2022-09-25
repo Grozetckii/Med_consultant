@@ -1,5 +1,6 @@
-package com.med_consultant;
+package com.med_consultant.frontend;
 
+import com.med_consultant.backend.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -7,7 +8,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 public class Add implements Initializable {
@@ -28,7 +28,7 @@ public class Add implements Initializable {
     public void clickAdd() throws IOException {
         String input = numHospital.getText() + " " + surname.getText() + " " + name.getText() + " " +
                 patronymic.getText() + " " + numCabinet.getText();
-        Main.main("add", input);
+        Main.add(input);
 
     };
 

@@ -11,5 +11,10 @@ module com.example.med_consultant {
     requires eu.hansolo.tilesfx;
 
     opens com.med_consultant to javafx.fxml;
+    //exports com.med_consultant;
+    exports com.med_consultant.frontend;
+    opens com.med_consultant.frontend to javafx.fxml;
+    exports com.med_consultant.backend;
+    opens com.med_consultant.backend to javafx.fxml;
     exports com.med_consultant;
 }

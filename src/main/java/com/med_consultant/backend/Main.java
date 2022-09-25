@@ -1,4 +1,5 @@
-package com.med_consultant;
+package com.med_consultant.backend;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +12,7 @@ public class Main {
     public static HashTable hashTable;
     public static RedBlackTree tree;
 
-    public static void main(String args, String input) throws IOException {
+    /*public static void main(String args, String input) throws IOException {
         _init_();
         switch (args) {
             case "add" -> add(input);
@@ -21,7 +22,7 @@ public class Main {
             default -> System.out.println("Unknown args");
         }
 
-        /*Scanner scan = new Scanner(System.in);
+        *//*Scanner scan = new Scanner(System.in);
         System.out.println("Введите ключи поиска(номер больницы и специальность)");
         int numHospital = scan.nextInt();
         String speciality = scan.nextLine();
@@ -31,8 +32,8 @@ public class Main {
         for (Hospitals hospital: result) {
             System.out.println(hospital.surname + " " + hospital.name + " " + hospital.patronymic + " стаж: "
                     + doctorArr.get(hospital.numLine - 2).experience + " лет" + " кабинет №" + hospital.numCabinet);
-        }*/
-    }
+        }*//*
+    }*/
 
     public static void _init_() throws IOException {
         hospitalArr = new ArrayList<>();
@@ -40,41 +41,47 @@ public class Main {
         hashTable = new HashTable();
         tree = new RedBlackTree();
 
-        readAll();
+        readDoctors();
+        readHospitals();
         buildTree();
         buildHashTable();
     }
-    private static void readAll() throws IOException {
+
+    private static void readDoctors() throws IOException {
         String encoding = System.getProperty("console.encoding", "utf-8");
         String fileDoctors = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\doctors.txt";
-        String fileHospitals = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\hospitals.txt";
         Path doctors = Paths.get(fileDoctors);
-        Path hospitals = Paths.get(fileHospitals);
         Scanner scanDoctors = new Scanner(doctors, encoding);
-        Scanner scanHospitals = new Scanner(hospitals, encoding);
-
-        int len = scanHospitals.nextInt();
-        scanDoctors.nextInt();
+        int len = scanDoctors.nextInt();
 
         for(int i = 0; i < len; i++){
             Doctors doc = new Doctors();
-            Hospitals hospital = new Hospitals();
+            doc.setSurname(scanDoctors.next());
+            doc.setName(scanDoctors.next());
+            doc.setPatronymic(scanDoctors.next());
+            doc.setExperience(scanDoctors.nextInt());
+            doc.setSpeciality(scanDoctors.next());
+            scanDoctors.nextLine();
+            doctorArr.add(doc);
+        }
+    }
+    private static void readHospitals() throws IOException {
+        String encoding = System.getProperty("console.encoding", "utf-8");
+        String fileHospitals = "C:\\Users\\Urapochka\\IdeaProjects\\Med_consultant\\src\\main\\java\\com\\med_consultant\\res\\hospitals.txt";
+        Path hospitals = Paths.get(fileHospitals);
+        Scanner scanHospitals = new Scanner(hospitals, encoding);
+        int len = scanHospitals.nextInt();
 
-            hospital.setNumLine(i + 2);
+        for(int i = 1; i < len;){
+            Hospitals hospital = new Hospitals();
+            hospital.setNumLine(++i);
             hospital.setNumHospital(scanHospitals.nextInt());
             hospital.setSurname(scanHospitals.next());
-            doc.setSurname(scanDoctors.next());
             hospital.setName(scanHospitals.next());
-            doc.setName(scanDoctors.next());
             hospital.setPatronymic(scanHospitals.next());
-            doc.setPatronymic(scanDoctors.next());
             hospital.setNumCabinet(scanHospitals.nextInt());
-            if(hospital.getNumLine() < 401)scanHospitals.nextLine();
-            doc.setExperience(scanDoctors.nextInt());
-            doc.setSpeciality(scanDoctors.nextLine());
-
+            if(i < len)scanHospitals.nextLine();
             hospitalArr.add(hospital);
-            doctorArr.add(doc);
         }
     }
     private static void buildHashTable() {
@@ -90,7 +97,7 @@ public class Main {
             tree.insert(hospital.getNumHospital(), hospital);
         }
     }
-    private static void add(String input) {
+    public static void add(String input) {
         Scanner scanDoctors = new Scanner(input);
         Scanner scanHospitals = new Scanner(input);
         Doctors doc = new Doctors();
@@ -129,7 +136,7 @@ public class Main {
     private static void addToFileDoctors(Doctors doctor){
 
     }
-    private static void remove(String args) throws IOException {
+    public static void remove(String args) throws IOException {
         Scanner scan = new Scanner(args);
         Doctors doctor = new Doctors();
         Hospitals hospital = new Hospitals();
@@ -194,7 +201,7 @@ public class Main {
         speciality = scan.nextLine();
         return search(numHospital, speciality);
     }
-    private static ArrayList<Hospitals> search(int numHospital, String speciality){
+    public static ArrayList<Hospitals> search(int numHospital, String speciality){
         ArrayList<Hospitals> res = tree.searchTree(numHospital).arr;
         for(int i = 0; i < res.size(); i++){
             Hospitals hospital = res.get(i);

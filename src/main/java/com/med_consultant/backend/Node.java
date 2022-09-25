@@ -1,4 +1,4 @@
-package com.med_consultant;
+package com.med_consultant.backend;
 
 import java.util.ArrayList;
 

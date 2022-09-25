@@ -1,4 +1,4 @@
-package com.med_consultant;
+package com.med_consultant.frontend;
 
 import javafx.fxml.Initializable;
 

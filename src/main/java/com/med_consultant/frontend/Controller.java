@@ -1,5 +1,9 @@
-package com.med_consultant;
+package com.med_consultant.frontend;
 
+import com.med_consultant.Application;
+import com.med_consultant.backend.Doctors;
+import com.med_consultant.backend.Hospitals;
+import com.med_consultant.backend.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,12 +43,21 @@ public class Controller implements Initializable {
     private TableColumn<Hospitals, Integer> numCabinetColumn;
 
     @FXML
-    public void add() throws IOException {Application.add();}
+    public void addDoctor() throws IOException {Application.addDoctor();}
     @FXML
-    public void remove() throws IOException {Application.remove();}
+    public void removeDoctor() throws IOException {Application.removeDoctor();}
     @FXML
-    public void search() throws IOException {Application.search();}
+    public void searchDoctor() throws IOException {Application.searchDoctor();}
+    @FXML
+    public void report() throws IOException {Application.report();}
     @FXML void debug() throws IOException {Application.debug();}
+
+    @FXML
+    public void addHospital() throws IOException {Application.addHospital();}
+    @FXML
+    public void removeHospital() throws IOException {Application.removeHospital();}
+    @FXML
+    public void searchHospital() throws IOException {Application.searchHospital();}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.Controller">
    <children>
       <AnchorPane prefHeight="700.0" prefWidth="600.0">
          <children>
@@ -22,9 +22,9 @@
                   <TableColumn fx:id="specialityColumn" prefWidth="150.0" text="Специальность" />
               </columns>
             </TableView>
-            <Button layoutX="400.0" layoutY="665.0" mnemonicParsing="false" text="Поиск" />
-            <Button layoutX="100.0" layoutY="665.0" mnemonicParsing="false" onAction="#add" text="Добавить" />
-            <Button layoutX="250.0" layoutY="665.0" mnemonicParsing="false" onAction="#remove" text="Удалить" />
+            <Button layoutX="400.0" layoutY="665.0" mnemonicParsing="false" onAction="#searchDoctor" text="Поиск" />
+            <Button layoutX="100.0" layoutY="665.0" mnemonicParsing="false" onAction="#addDoctor" text="Добавить" />
+            <Button layoutX="250.0" layoutY="665.0" mnemonicParsing="false" onAction="#removeDoctor" text="Удалить" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="600.0" prefHeight="700.0" prefWidth="600.0">
@@ -43,13 +43,12 @@
                   <TableColumn fx:id="numCabinetColumn" prefWidth="125.0" text="Номер кабинета" />
               </columns>
             </TableView>
-            <Button layoutX="100.0" layoutY="665.0" mnemonicParsing="false" text="Добавить" />
-            <Button layoutX="250.0" layoutY="665.0" mnemonicParsing="false" text="Удалить" />
-            <Button layoutX="400.0" layoutY="665.0" mnemonicParsing="false" text="Поиск" />
+            <Button layoutX="100.0" layoutY="665.0" mnemonicParsing="false" onAction="#addHospital" text="Добавить" />
+            <Button layoutX="250.0" layoutY="665.0" mnemonicParsing="false" onAction="#removeHospital" text="Удалить" />
+            <Button layoutX="400.0" layoutY="665.0" mnemonicParsing="false" onAction="#searchHospital" text="Поиск" />
          </children>
       </AnchorPane>
-      <Button layoutX="460.0" layoutY="12.0" mnemonicParsing="false" onAction="#search" text="Сформировать отчет" />
+      <Button layoutX="460.0" layoutY="12.0" mnemonicParsing="false" onAction="#report" text="Сформировать отчет" />
       <Button layoutX="630.0" layoutY="12.0" mnemonicParsing="false" onAction="#debug" text="Отладка" />
-      <Separator layoutX="598.0" layoutY="650.0" maxWidth="0.0" orientation="VERTICAL" prefHeight="50.0" />
    </children>
 </AnchorPane>

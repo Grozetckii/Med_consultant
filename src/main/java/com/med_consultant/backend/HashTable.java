@@ -1,4 +1,6 @@
-package com.med_consultant;
+package com.med_consultant.backend;
+
+import com.med_consultant.backend.Doctors;
 
 import java.util.ArrayList;
 //import java.util.HashSet;

@@ -18,30 +18,39 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    public static void add() throws IOException {
+    public static void addDoctor() throws IOException {
         Stage add = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("add.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("addDoctor.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        add.setTitle("Добавление");
+        add.setTitle("Добавить врача");
         add.setResizable(false);
         add.setScene(scene);
         add.show();
     }
 
-    public static void remove() throws IOException {
+    public static void removeDoctor() throws IOException {
         Stage remove = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("remove.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("removeDoctor.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        remove.setTitle("Удаление");
+        remove.setTitle("Удалить врача");
         remove.setScene(scene);
         remove.show();
     }
 
-    public static void search() throws IOException {
+    public static void searchDoctor() throws IOException {
+        Stage searchDoctors = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("searchDoctor.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        searchDoctors.setTitle("Найти врача");
+        searchDoctors.setScene(scene);
+        searchDoctors.show();
+    }
+
+    public static void report() throws IOException {
         Stage search = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("search.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        search.setTitle("Поиск");
+        search.setTitle("Отчёт");
         search.setScene(scene);
         search.show();
     }
@@ -53,6 +62,36 @@ public class Application extends javafx.application.Application {
         debug.setTitle("Отладка");
         debug.setScene(scene);
         debug.show();
+    }
+
+    public static void addHospital() throws IOException {
+        Stage add = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("addHospital.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        add.setTitle("Добавить врача в больницу");
+        add.setResizable(false);
+        add.setScene(scene);
+        add.show();
+    }
+
+    public static void removeHospital() throws IOException {
+        Stage add = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("removeHospital.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        add.setTitle("Удалить врача из больницы");
+        add.setResizable(false);
+        add.setScene(scene);
+        add.show();
+    }
+
+    public static void searchHospital() throws IOException {
+        Stage add = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("searchHospital.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        add.setTitle("Поиск врачей по больнице");
+        add.setResizable(false);
+        add.setScene(scene);
+        add.show();
     }
 
     public static void main(String[] args) {

@@ -103,7 +103,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.med_consultant.Main</mainClass>
+                            <mainClass>com.med_consultant.backend.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

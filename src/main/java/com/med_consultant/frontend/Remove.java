@@ -1,5 +1,6 @@
-package com.med_consultant;
+package com.med_consultant.frontend;
 
+import com.med_consultant.backend.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,7 +32,7 @@ public class Remove implements Initializable {
     public void clickButton() throws IOException {
         String input = numHospital.getText() + surname.getText() + name.getText() + patronymic.getText()
                 + numCabinet.getText() + experience.getText() + speciality.getText();
-        Main.main("remove", input);
+        Main.remove(input);
     }
 
     @Override

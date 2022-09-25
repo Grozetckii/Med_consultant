@@ -4,24 +4,36 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="150.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.Search">
-    <children>
-        <Label layoutX="230.0" layoutY="10.0" text="Найти врача">
-            <font>
-                <Font name="Roboto Light" size="24.0" />
-            </font>
-        </Label>
-        <TextField layoutX="200.0" layoutY="70.0" prefWidth="100.0" />
-        <TextField layoutX="200.0" layoutY="100.0" prefWidth="300.0" />
-        <Label layoutX="50.0" layoutY="70.0" text="Номер больницы">
-            <font>
-                <Font name="Roboto Light" size="15.0" />
-            </font>
-        </Label>
-        <Label layoutX="50.0" layoutY="100.0" text="Специальность">
-            <font>
-                <Font name="Roboto Light" size="15.0" />
-            </font></Label>
-        <Button layoutX="516.0" layoutY="100.0" mnemonicParsing="false" text="Найти" />
-    </children>
+<AnchorPane prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.Search">
+    <Label layoutX="250.0" text="Отчёт" textAlignment="CENTER">
+        <font>
+          <Font name="Roboto Light" size="32.0" />
+        </font>
+    </Label>
+    <TableView fx:id="table" layoutY="50.0" prefHeight="450.0" prefWidth="525.0">
+      <columns>
+          <TableColumn fx:id="surname" prefWidth="150.0" text="Фамилия" />
+          <TableColumn fx:id="name" prefWidth="125.0" text="Имя" />
+          <TableColumn fx:id="patronymic" prefWidth="125.0" text="Отчество" />
+          <TableColumn fx:id="time" prefWidth="125.0" text="Время работы" />
+      </columns>
+    </TableView>
+   <TextField fx:id="numHospital" layoutX="250.0" layoutY="550.0" maxWidth="100.0" />
+   <TextField fx:id="speciality" layoutX="250.0" layoutY="600.0" prefWidth="250.0" />
+   <Label layoutX="100.0" layoutY="550.0" text="Номер больницы">
+      <font>
+         <Font name="Roboto Light" size="15.0" />
+      </font>
+   </Label>
+   <Label layoutX="100.0" layoutY="600.0" text="Специальность">
+      <font>
+         <Font name="Roboto Light" size="15.0" />
+      </font>
+   </Label>
+   <Button layoutX="400.0" layoutY="650.0" mnemonicParsing="false" onAction="#search" text="Сформировать" />
+   <TableView fx:id="table2" layoutX="525.0" layoutY="50.0" prefHeight="450.0" prefWidth="100.0">
+     <columns>
+       <TableColumn fx:id="experience" prefWidth="100.0" text="Стаж" />
+     </columns>
+   </TableView>
 </AnchorPane>

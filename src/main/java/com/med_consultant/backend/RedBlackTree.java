@@ -1,4 +1,7 @@
-package com.med_consultant;
+package com.med_consultant.backend;
+
+import com.med_consultant.backend.Hospitals;
+import com.med_consultant.backend.Node;
 
 import java.util.ArrayList;
 
