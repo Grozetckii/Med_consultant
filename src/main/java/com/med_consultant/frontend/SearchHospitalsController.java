@@ -41,13 +41,18 @@ public class SearchHospitalsController implements Initializable {
 
     @FXML
     public void clickSearchHospital(){
-        ArrayList<Hospitals> data = Main.searchHospital(Integer.parseInt(numHospital.getText()));
-        try{
-            ObservableList<Hospitals> hospital = FXCollections.observableArrayList(data);
-            tableHospital.setItems(hospital);
-            error.setText("");
-        }catch (Exception ex){
+        String s = numHospital.getText();
+        if(s.equals("")){
             error.setText("Больница не найдена!");
+        }else{
+            try{
+                ArrayList<Hospitals> data = Main.searchHospital(Integer.parseInt(numHospital.getText()));
+                ObservableList<Hospitals> hospital = FXCollections.observableArrayList(data);
+                tableHospital.setItems(hospital);
+                error.setText("");
+            }catch (Exception ex){
+                error.setText("Больница не найдена!");
+            }
         }
     }
 

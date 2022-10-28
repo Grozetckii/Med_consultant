@@ -51,7 +51,7 @@ public class ReportController implements Initializable {
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         patronymic.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
-        experience.setText("");
+        experience.setCellValueFactory(new PropertyValueFactory<>("experience"));
         time.setCellValueFactory(new PropertyValueFactory<>("numCabinet"));
 
     }

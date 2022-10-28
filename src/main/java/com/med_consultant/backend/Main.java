@@ -228,8 +228,14 @@ public class Main {
         }
         return res;
     }
-    public static void searchDoctor(String surname, String name, String patronymic){
-
+    public static ArrayList<Doctors> searchDoctor(String speciality){
+        ArrayList<Doctors> res = new ArrayList<>();
+        for(var x : doctorArr){
+            if(x.getSpeciality().equals(speciality)){
+                res.add(x);
+            }
+        }
+        return res;
     }
 
     public static ArrayList<Hospitals> searchHospital(int numHospital){

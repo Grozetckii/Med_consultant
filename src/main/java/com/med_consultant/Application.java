@@ -48,7 +48,7 @@ public class Application extends javafx.application.Application {
 
     public static void report() throws IOException {
         Stage search = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("search.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("report.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         search.setTitle("Отчёт");
         search.setScene(scene);
