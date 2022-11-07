@@ -4,50 +4,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.AddDoctorController">
+<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.AddDoctorController">
    <children>
       <Label layoutX="215.0" layoutY="10.0" text="Добавить врача">
          <font>
             <Font name="Roboto Light" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numHospital" layoutX="200.0" layoutY="70.0" prefWidth="300.0" />
-      <TextField fx:id="surname" layoutX="200.0" layoutY="100.0" prefWidth="300.0" />
-      <TextField fx:id="name" layoutX="200.0" layoutY="130.0" prefWidth="300.0" />
-      <TextField fx:id="patronymic" layoutX="200.0" layoutY="160.0" prefWidth="300.0" />
-      <TextField fx:id="numCabinet" layoutX="200.0" layoutY="190.0" prefWidth="300.0" />
-      <TextField fx:id="experience" layoutX="200.0" layoutY="220.0" prefWidth="300.0" />
-      <TextField fx:id="speciality" layoutX="200.0" layoutY="250.0" prefWidth="300.0" />
-      <Label layoutX="50.0" layoutY="70.0" text="Номер больницы">
+      <TextField fx:id="surname" layoutX="225.0" layoutY="64.0" prefWidth="300.0" />
+      <TextField fx:id="name" layoutX="225.0" layoutY="94.0" prefWidth="300.0" />
+      <TextField fx:id="patronymic" layoutX="225.0" layoutY="124.0" prefWidth="300.0" />
+      <TextField fx:id="experience" layoutX="225.0" layoutY="156.0" prefWidth="300.0" />
+      <TextField fx:id="speciality" layoutX="225.0" layoutY="186.0" prefWidth="300.0" />
+      <Label layoutX="75.0" layoutY="64.0" text="Фамилия">
          <font>
             <Font name="Roboto Light" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="100.0" text="Фамилия">
-         <font>
-            <Font name="Roboto Light" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="50.0" layoutY="130.0" text="Имя">
+      <Label layoutX="75.0" layoutY="94.0" text="Имя">
          <font>
             <Font name="Roboto Light" size="15.0" />
          </font></Label>
-      <Label layoutX="50.0" layoutY="160.0" text="Отчество">
+      <Label layoutX="75.0" layoutY="124.0" text="Отчество">
          <font>
             <Font name="Roboto Light" size="15.0" />
          </font></Label>
-      <Label layoutX="50.0" layoutY="190.0" text="Номер кабинета">
+      <Label layoutX="75.0" layoutY="156.0" text="Стаж">
          <font>
             <Font name="Roboto Light" size="15.0" />
          </font></Label>
-      <Label layoutX="50.0" layoutY="220.0" text="Стаж">
+      <Label layoutX="75.0" layoutY="186.0" text="Специальность">
          <font>
             <Font name="Roboto Light" size="15.0" />
          </font></Label>
-      <Label layoutX="50.0" layoutY="250.0" text="Специальность">
-         <font>
-            <Font name="Roboto Light" size="15.0" />
-         </font></Label>
-      <Button fx:id="add" layoutX="516.0" layoutY="250.0" mnemonicParsing="false" onAction="#clickAdd" text="Добавить" />
+      <Button fx:id="add" layoutX="271.0" layoutY="249.0" mnemonicParsing="false" onAction="#clickAdd" text="Добавить" />
+      <Label fx:id="error" layoutX="166.0" layoutY="221.0" prefHeight="18.0" prefWidth="268.0" />
    </children>
 </AnchorPane>

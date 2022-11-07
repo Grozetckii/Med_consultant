@@ -12,29 +12,6 @@ public class Main {
     public static HashTable hashTable;
     public static RedBlackTree tree;
 
-    /*public static void main(String args, String input) throws IOException {
-        _init_();
-        switch (args) {
-            case "add" -> add(input);
-            case "remove" -> remove(input);
-            case "search" -> search(input);
-            case "print" -> print();
-            default -> System.out.println("Unknown args");
-        }
-
-        *//*Scanner scan = new Scanner(System.in);
-        System.out.println("Введите ключи поиска(номер больницы и специальность)");
-        int numHospital = scan.nextInt();
-        String speciality = scan.nextLine();
-
-        ArrayList<Hospitals> result = search(numHospital, speciality);
-
-        for (Hospitals hospital: result) {
-            System.out.println(hospital.surname + " " + hospital.name + " " + hospital.patronymic + " стаж: "
-                    + doctorArr.get(hospital.numLine - 2).experience + " лет" + " кабинет №" + hospital.numCabinet);
-        }*//*
-    }*/
-
     public static void _init_() throws IOException {
         hospitalArr = new ArrayList<>();
         doctorArr = new ArrayList<>();
@@ -85,43 +62,17 @@ public class Main {
         }
     }
     private static void buildHashTable() {
-        //HashSet<String> copy;
         for (Doctors doctor : doctorArr) {
-            String fio = doctor.getSurname() + doctor.getName() + doctor.getPatronymic();
-            int hash = hashTable.getConvolutionHash(fio);
-            hashTable.add(hash, doctor);
+            addHashTable(doctor);
         }
     }
+
     private static void buildTree() {
         for(Hospitals hospital: hospitalArr){
-            tree.insert(hospital.getNumHospital(), hospital);
+            addTree(hospital);
         }
     }
-    public static void add(String input) {
-        Scanner scanDoctors = new Scanner(input);
-        Scanner scanHospitals = new Scanner(input);
-        Doctors doc = new Doctors();
-        Hospitals hospital = new Hospitals();
 
-        //hospital.numLine = i + 2;
-        hospital.setNumHospital(scanHospitals.nextInt());
-        hospital.setSurname(scanHospitals.next());
-        doc.setSurname(hospital.getSurname());
-        hospital.setName(scanHospitals.next());
-        doc.setName(hospital.getName());
-        hospital.setPatronymic(scanHospitals.next());
-        doc.setPatronymic(hospital.getPatronymic());
-        hospital.setNumCabinet(scanHospitals.nextInt());
-        doc.setExperience(scanDoctors.nextInt());
-        doc.setSpeciality(scanDoctors.nextLine());
-
-        hospitalArr.add(hospital);
-        addTree(hospitalArr.get(hospitalArr.size() - 1));
-        doctorArr.add(doc);
-        addHashTable(doctorArr.get(doctorArr.size() - 1));
-        addToFileHospitals(hospital);
-        addToFileDoctors(doc);
-    }
     private static void addTree(Hospitals hospital){
         tree.insert(hospital.getNumHospital(), hospital);
     }
@@ -158,10 +109,10 @@ public class Main {
     private static void removeTree(int numHospital){
         tree.deleteNode(numHospital);
     }
-    private static void removeHashTable(Doctors doctor){
+    private static int removeHashTable(Doctors doctor){
         String fio = doctor.getSurname() + doctor.getName() + doctor.getPatronymic();
         int hash = hashTable.getConvolutionHash(fio);
-        hashTable.del(hash, fio);
+        return hashTable.del(hash, fio);
     }
     private static void removeFromFileHospitals(Hospitals hospital) throws IOException {
         String encoding = System.getProperty("console.encoding", "utf-8");
@@ -228,6 +179,55 @@ public class Main {
         }
         return res;
     }
+
+    public static int addDoctor(String input){
+        Scanner scanDoctors = new Scanner(input);
+        Doctors doc = new Doctors();
+        doc.setSurname(scanDoctors.next());
+        doc.setName(scanDoctors.next());
+        doc.setPatronymic(scanDoctors.next());
+        doc.setExperience(scanDoctors.nextInt());
+        doc.setSpeciality(scanDoctors.next());
+        String fio = doc.getSurname() + doc.getName() + doc.getPatronymic();
+        int hash = hashTable.getConvolutionHash(fio);
+        if(hashTable.collision(hash, fio) == -1){
+            doctorArr.add(doc);
+            addHashTable(doctorArr.get(doctorArr.size() - 1));
+        }else{
+            return -1;
+        }
+        return 0;
+    }
+
+    public static int removeDoctor(String input){
+        Scanner scanDoctors = new Scanner(input);
+        Doctors doc = new Doctors();
+        doc.setSurname(scanDoctors.next());
+        doc.setName(scanDoctors.next());
+        doc.setPatronymic(scanDoctors.next());
+        String fio = doc.getSurname() + doc.getName() + doc.getPatronymic();
+        tree.LNR_Remove(fio);
+        for(int i = 0; i < hospitalArr.size(); i++){
+            if((hospitalArr.get(i).getSurname() + hospitalArr.get(i).getName() +
+                    hospitalArr.get(i).getPatronymic()).equals(fio)){
+                hospitalArr.remove(i);
+                i--;
+            }
+        }
+
+        for(int i = 0; i < doctorArr.size(); i++){
+            if((doctorArr.get(i).getSurname() + doctorArr.get(i).getName() +
+                    doctorArr.get(i).getPatronymic()).equals(fio)){
+                doctorArr.remove(i);
+                break;
+            }
+        }
+        if(removeHashTable(doc) == -1){
+            return -1;
+        }
+        return 0;
+    }
+
     public static ArrayList<Doctors> searchDoctor(String speciality){
         ArrayList<Doctors> res = new ArrayList<>();
         for(var x : doctorArr){
@@ -238,6 +238,61 @@ public class Main {
         return res;
     }
 
+    public static int addHospital(String input){
+        Scanner scanHospitals = new Scanner(input);
+        Hospitals hospital = new Hospitals();
+        hospital.setNumHospital(scanHospitals.nextInt());
+        hospital.setSurname(scanHospitals.next());
+        hospital.setName(scanHospitals.next());
+        hospital.setPatronymic(scanHospitals.next());
+        hospital.setNumCabinet(scanHospitals.nextInt());
+        String fio = hospital.getSurname() + hospital.getName() + hospital.getPatronymic();
+        ArrayList<Hospitals> temp = tree.searchTree(hospital.getNumHospital()).arr;
+        for(var x: temp){
+            if((x.getSurname() + x.getName() + x.getPatronymic()).equals(fio)){
+                return -1;
+            }
+        }
+        int hash = hashTable.getConvolutionHash(fio);
+        if(hashTable.collision(hash, fio) == -1){
+            return -2;
+        }else{
+            tree.insert(hospital.getNumHospital(), hospital);
+            hospitalArr.add(hospital);
+        }
+        return 0;
+    }
+
+    public static int removeHospital(String input){
+        Scanner scanHospitals = new Scanner(input);
+        Hospitals hospital = new Hospitals();
+        hospital.setSurname(scanHospitals.next());
+        hospital.setName(scanHospitals.next());
+        hospital.setPatronymic(scanHospitals.next());
+        hospital.setNumHospital(scanHospitals.nextInt());
+        String fio = hospital.getSurname() + hospital.getName() + hospital.getPatronymic();
+        ArrayList<Hospitals> temp = tree.searchTree(hospital.getNumHospital()).arr;
+        if(temp == null){
+            return -2;
+        }else{
+            int i = 0;
+            for(var x: temp){
+                if((x.getSurname() + x.getName() + x.getPatronymic()).equals(fio)){
+                    tree.searchTree(hospital.getNumHospital()).arr.remove(i);
+                    for(int j = 0; j < hospitalArr.size(); j++){
+                        if((hospitalArr.get(j).getSurname() + hospitalArr.get(j).getName() +
+                                hospitalArr.get(j).getPatronymic()).equals(fio)){
+                            hospitalArr.remove(j);
+                            break;
+                        }
+                    }
+                    return 0;
+                }
+                i++;
+            }
+            return -1;
+        }
+    }
     public static ArrayList<Hospitals> searchHospital(int numHospital){
         return tree.searchTree(numHospital).arr;
     }

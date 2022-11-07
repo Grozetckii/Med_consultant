@@ -17,11 +17,20 @@ public class RedBlackTree {
         }
     }
 
-    private void LNRHelper(Node node){
+    private void LNR_RemoveHelper(Node node, String fio){
         if (node != TNULL) {
-            LNRHelper(node.left);
-            System.out.println(node.key + " ");
-            LNRHelper(node.right);
+            LNR_RemoveHelper(node.left, fio);
+            //int i = 0;
+            if(node.arr != null){
+                for(int i = 0; i < node.arr.size(); i++){
+                    Hospitals hospital = node.arr.get(i);
+                    if((hospital.getSurname() + hospital.getName() + hospital.getPatronymic()).equals(fio)){
+                        node.arr.remove(i);
+                        break;
+                    }
+                }
+            }
+            LNR_RemoveHelper(node.right, fio);
         }
     }
 
@@ -253,8 +262,8 @@ public class RedBlackTree {
         NLRHelper(this.root);
     }
 
-    public void LNR(){
-        LNRHelper(this.root);
+    public void LNR_Remove(String fio){
+        LNR_RemoveHelper(this.root, fio);
     }
 
     public void LRN(){

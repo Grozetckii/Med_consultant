@@ -43,7 +43,7 @@ public class SearchHospitalsController implements Initializable {
     public void clickSearchHospital(){
         String s = numHospital.getText();
         if(s.equals("")){
-            error.setText("Больница не найдена!");
+            error.setText("Введите данные для поиска!");
         }else{
             try{
                 ArrayList<Hospitals> data = Main.searchHospital(Integer.parseInt(numHospital.getText()));

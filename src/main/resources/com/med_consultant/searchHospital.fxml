@@ -26,6 +26,6 @@
             <TableColumn fx:id="numCabinetColumn" prefWidth="92.20001220703125" text="Кабинет" />
         </columns>
       </TableView>
-      <Label fx:id="error" layoutX="235.0" layoutY="158.0" prefHeight="18.0" prefWidth="130.0" />
+      <Label fx:id="error" layoutX="164.0" layoutY="155.0" prefHeight="18.0" prefWidth="252.0" />
    </children>
 </AnchorPane>

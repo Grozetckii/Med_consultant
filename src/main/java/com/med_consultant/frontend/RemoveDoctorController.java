@@ -2,17 +2,10 @@ package com.med_consultant.frontend;
 
 import com.med_consultant.backend.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class RemoveDoctorController implements Initializable {
-    @FXML
-    private TextField numHospital;
+public class RemoveDoctorController {
     @FXML
     private TextField surname;
     @FXML
@@ -20,23 +13,26 @@ public class RemoveDoctorController implements Initializable {
     @FXML
     private TextField patronymic;
     @FXML
-    private TextField numCabinet;
-    @FXML
-    private TextField experience;
-    @FXML
-    private TextField speciality;
-    @FXML
-    private Button removeButton;
+    private Label error;
+
 
     @FXML
-    public void clickButton() throws IOException {
-        String input = numHospital.getText() + surname.getText() + name.getText() + patronymic.getText()
-                + numCabinet.getText() + experience.getText() + speciality.getText();
-        Main.remove(input);
-    }
+    public void clickRemove() {
+        String input = surname.getText() + " " + name.getText() + " " + patronymic.getText();
+        if(surname.getText().equals("") || name.getText().equals("") || patronymic.getText().equals("")){
+            error.setText("Введите данные для поиска!");
+        }else{
+            try{
+                int res = Main.removeDoctor(input);
+                if(res == -1){
+                    error.setText("Такого врача нет!");
+                }else{
+                    error.setText("Успешно удалено.");
+                }
+            }catch (Exception ex){
+                error.setText("Данные введены не корректно!");
+            }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        }
     }
 }

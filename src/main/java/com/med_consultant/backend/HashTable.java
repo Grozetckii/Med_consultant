@@ -98,18 +98,19 @@ public class HashTable {
         return -1;
     }
 
-    public void del(int hash, String key)
+    public int del(int hash, String key)
     {
-            if (hashTableArr.get(hash).size() > 0) {
+        if (hashTableArr.get(hash).size() > 0) {
             int id = collision(hash, key);
             if (id == -1) {
-                System.out.println("Значение с ключём " + key + " не найдено!");
+                return -1;
             }
             else {
                 hashTableArr.get(hash).remove(id);
+                return 0;
             }
-
         }
+        return -1;
     }
 
     public Doctors getStruct(int hash, String key)

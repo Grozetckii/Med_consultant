@@ -1,31 +1,37 @@
 package com.med_consultant;
 
+import com.med_consultant.frontend.MainController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
 public class Application extends javafx.application.Application {
+    public static Stage addDoctor;
+    public static Stage addHospital;
+    public static Stage removeHospital;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+         Scene mainScene = new Scene(fxmlLoader.load());
         //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("header.css")).toExternalForm());
         stage.setTitle("Медконсультант");
         stage.setResizable(false);
-        stage.setScene(scene);
+        stage.setScene(mainScene);
         stage.show();
     }
 
     public static void addDoctor() throws IOException {
-        Stage add = new Stage();
+        addDoctor = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("addDoctor.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        add.setTitle("Добавить врача");
-        add.setResizable(false);
-        add.setScene(scene);
-        add.show();
+        addDoctor.setTitle("Добавить врача");
+        addDoctor.setResizable(false);
+        addDoctor.setScene(scene);
+        addDoctor.show();
     }
 
     public static void removeDoctor() throws IOException {
@@ -65,23 +71,23 @@ public class Application extends javafx.application.Application {
     }
 
     public static void addHospital() throws IOException {
-        Stage add = new Stage();
+        addHospital = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("addHospital.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        add.setTitle("Добавить врача в больницу");
-        add.setResizable(false);
-        add.setScene(scene);
-        add.show();
+        addHospital.setTitle("Добавить врача в больницу");
+        addHospital.setResizable(false);
+        addHospital.setScene(scene);
+        addHospital.show();
     }
 
     public static void removeHospital() throws IOException {
-        Stage add = new Stage();
+        removeHospital = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("removeHospital.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        add.setTitle("Удалить врача из больницы");
-        add.setResizable(false);
-        add.setScene(scene);
-        add.show();
+        removeHospital.setTitle("Удалить врача из больницы");
+        removeHospital.setResizable(false);
+        removeHospital.setScene(scene);
+        removeHospital.show();
     }
 
     public static void searchHospital() throws IOException {

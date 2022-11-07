@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="243.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.RemoveDoctorController">
+<AnchorPane prefHeight="263.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.med_consultant.frontend.RemoveDoctorController">
     <children>
         <Label layoutX="215.0" layoutY="10.0" text="Удалить врача">
             <font>
@@ -27,6 +27,7 @@
             <font>
                 <Font name="Roboto Light" size="15.0" />
             </font></Label>
-        <Button fx:id="removeButton" layoutX="267.0" layoutY="189.0" mnemonicParsing="false" text="Удалить" />
+        <Button layoutX="267.0" layoutY="209.0" mnemonicParsing="false" onAction="#clickRemove" text="Удалить" />
+      <Label fx:id="error" layoutX="139.0" layoutY="168.0" prefHeight="26.0" prefWidth="350.0" />
     </children>
 </AnchorPane>

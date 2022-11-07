@@ -43,9 +43,16 @@ public class MainController implements Initializable {
     private TableColumn<Hospitals, Integer> numCabinetColumn;
 
     @FXML
-    public void addDoctor() throws IOException {Application.addDoctor();}
+    public void addDoctor() throws IOException {
+        Application.addDoctor();
+        updateTableDoctors();
+    }
     @FXML
-    public void removeDoctor() throws IOException {Application.removeDoctor();}
+    public void removeDoctor() throws IOException {
+        Application.removeDoctor();
+        updateTableDoctors();
+        updateTableHospital();
+    }
     @FXML
     public void searchDoctor() throws IOException {Application.searchDoctor();}
     @FXML
@@ -53,12 +60,41 @@ public class MainController implements Initializable {
     @FXML void debug() throws IOException {Application.debug();}
 
     @FXML
-    public void addHospital() throws IOException {Application.addHospital();}
+    public void addHospital() throws IOException {
+        Application.addHospital();
+        updateTableHospital();
+    }
     @FXML
-    public void removeHospital() throws IOException {Application.removeHospital();}
+    public void removeHospital() throws IOException {
+        Application.removeHospital();
+        updateTableHospital();
+    }
     @FXML
     public void searchHospital() throws IOException {Application.searchHospital();}
 
+    public void updateTableDoctors(){
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        patronymicColumn.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
+        experienceColumn.setCellValueFactory(new PropertyValueFactory<>("experience"));
+        specialityColumn.setCellValueFactory(new PropertyValueFactory<>("speciality"));
+
+        ObservableList<Doctors> doctors = FXCollections.observableArrayList(Main.doctorArr);
+
+        tableDoctors.setItems(doctors);
+    }
+
+    public void updateTableHospital(){
+        numHospitalColumn.setCellValueFactory(new PropertyValueFactory<>("numHospital"));
+        surnameColumn2.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        nameColumn2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        patronymicColumn2.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
+        numCabinetColumn.setCellValueFactory(new PropertyValueFactory<>("numCabinet"));
+
+        ObservableList<Hospitals> hospitals = FXCollections.observableArrayList(Main.hospitalArr);
+
+        tableHospitals.setItems(hospitals);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

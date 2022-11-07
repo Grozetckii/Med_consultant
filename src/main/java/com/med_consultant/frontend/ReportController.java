@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,23 +27,31 @@ public class ReportController implements Initializable {
     @FXML
     private TableView<Hospitals> table;
     @FXML
-    private TableView<Doctors> table2;
-    @FXML
     private TableColumn<Hospitals, String> surname;
     @FXML
     private TableColumn<Hospitals, String> name;
     @FXML
     private TableColumn<Hospitals, String> patronymic;
     @FXML
-    private TableColumn<Doctors, Integer> experience;
+    private TableColumn<Hospitals, Integer> numCabinet;
     @FXML
-    private TableColumn<Hospitals, String> time;
+    private Label error;
 
     @FXML
     public void search() throws IOException {
-        ArrayList<Hospitals> res = Main.search(Integer.parseInt(numHospital.getText()), speciality.getText());
-        ObservableList<Hospitals> hospitals = FXCollections.observableArrayList(res);
-        table.setItems(hospitals);
+        if(numHospital.getText().equals("") || speciality.getText().equals("")){
+            error.setText("Введите данных для формирования отчёта!");
+        }else{
+            try{
+                ArrayList<Hospitals> res = Main.search(Integer.parseInt(numHospital.getText()), speciality.getText());
+                ObservableList<Hospitals> hospitals = FXCollections.observableArrayList(res);
+                table.setItems(hospitals);
+                error.setText("");
+            }catch (Exception ex){
+                error.setText("Данные не корректны!");
+            }
+        }
+
 
     }
 
@@ -51,9 +60,7 @@ public class ReportController implements Initializable {
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         patronymic.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
-        experience.setCellValueFactory(new PropertyValueFactory<>("experience"));
-        time.setCellValueFactory(new PropertyValueFactory<>("numCabinet"));
-
+        numCabinet.setCellValueFactory(new PropertyValueFactory<>("numCabinet"));
     }
 }
 

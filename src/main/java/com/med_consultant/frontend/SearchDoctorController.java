@@ -41,19 +41,22 @@ public class SearchDoctorController implements Initializable {
 
     @FXML
     public void clickSearch(){
-        ArrayList<Doctors> res = Main.searchDoctor(speciality.getText());
-        if(res.size() == 0){
-            error.setText("Доктор не найден");
+        if(speciality.getText().equals("")){
+            error.setText("Введите данные для поиска!");
         }else{
-            ObservableList<Doctors> doctors = FXCollections.observableArrayList(res);
-            tableDoctors.setItems(doctors);
-            error.setText("");
+            try{
+                ArrayList<Doctors> res = Main.searchDoctor(speciality.getText());
+                if(res.size() == 0){
+                    error.setText("Доктор не найден");
+                }else{
+                    ObservableList<Doctors> doctors = FXCollections.observableArrayList(res);
+                    tableDoctors.setItems(doctors);
+                    error.setText("");
+                }
+            }catch (Exception ex){
+                error.setText("Данные введены не корректно");
+            }
         }
-        /*try{
-
-        }catch (Exception ex){
-
-        }*/
     }
 
     @Override
