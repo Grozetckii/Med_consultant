@@ -8,5 +8,6 @@ public class Node {
     Node right;
     int color;
     int key;
-    ArrayList<Hospitals> arr;
+
+    LinkedList list;
 }

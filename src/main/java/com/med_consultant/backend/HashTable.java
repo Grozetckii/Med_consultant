@@ -66,26 +66,9 @@ public class HashTable {
 
     public void add(int hash, Doctors doctor)
     {
-        /*if(hash > h) {
-            hashTableArr = addSize();
-        }*/
         hashTableArr.get(hash).add(doctor);
     }
-    /*private ArrayList<ArrayList<Doctors>> addSize(){
-        h *= 1.5;
-        ArrayList<ArrayList<Doctors>> temp = new ArrayList<>();
-        for (int i = 0; i < h; i++) {
-            temp.add(new ArrayList<>());
-            for (int j = 0; j < hashTableArr.get(i).size(); j++) {
-                String fio = hashTableArr.get(i).get(j).surname + hashTableArr.get(i).get(j).name
-                        + hashTableArr.get(i).get(j).patronymic;
-                int hash = getConvolutionHash(fio);
-                temp.get(hash).add(hashTableArr.get(i).get(j));
-            }
 
-        }
-        return temp;
-    }*/
 
     public int collision(int hash, String key)
     {

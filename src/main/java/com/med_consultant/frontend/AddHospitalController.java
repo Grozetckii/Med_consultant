@@ -25,7 +25,7 @@ public class AddHospitalController {
     public void clickAdd() {
         String input = numHospital.getText() + " " + surname.getText() + " " + name.getText() + " " +
                 patronymic.getText() + " " + numCabinet.getText();
-        if(!(numHospital.getText().equals("") || surname.getText().equals("") || name.getText().equals("") ||
+        if((numHospital.getText().equals("") || surname.getText().equals("") || name.getText().equals("") ||
                 patronymic.getText().equals("") || numCabinet.getText().equals(""))){
             error.setText("Введите данные для добавления!");
         }else{

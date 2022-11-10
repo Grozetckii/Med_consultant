@@ -152,8 +152,16 @@ public class Main {
         speciality = scan.nextLine();
         return search(numHospital, speciality);
     }*/
+
+    public static ArrayList<Hospitals> toArrayList(LinkedList list){
+        ArrayList<Hospitals> temp = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++){
+            temp.add(list.get(i));
+        }
+        return temp;
+    }
     public static ArrayList<Hospitals> search(int numHospital, String speciality){
-        ArrayList<Hospitals> res = tree.searchTree(numHospital).arr;
+        ArrayList<Hospitals> res = toArrayList(tree.searchTree(numHospital).list);
         for(int i = 0; i < res.size(); i++){
             Hospitals hospital = res.get(i);
             String fio = hospital.getSurname() + hospital.getName() + hospital.getPatronymic();
@@ -247,7 +255,7 @@ public class Main {
         hospital.setPatronymic(scanHospitals.next());
         hospital.setNumCabinet(scanHospitals.nextInt());
         String fio = hospital.getSurname() + hospital.getName() + hospital.getPatronymic();
-        ArrayList<Hospitals> temp = tree.searchTree(hospital.getNumHospital()).arr;
+        ArrayList<Hospitals> temp = toArrayList(tree.searchTree(hospital.getNumHospital()).list);
         for(var x: temp){
             if((x.getSurname() + x.getName() + x.getPatronymic()).equals(fio)){
                 return -1;
@@ -271,14 +279,14 @@ public class Main {
         hospital.setPatronymic(scanHospitals.next());
         hospital.setNumHospital(scanHospitals.nextInt());
         String fio = hospital.getSurname() + hospital.getName() + hospital.getPatronymic();
-        ArrayList<Hospitals> temp = tree.searchTree(hospital.getNumHospital()).arr;
+        ArrayList<Hospitals> temp = toArrayList(tree.searchTree(hospital.getNumHospital()).list);
         if(temp == null){
             return -2;
         }else{
             int i = 0;
             for(var x: temp){
                 if((x.getSurname() + x.getName() + x.getPatronymic()).equals(fio)){
-                    tree.searchTree(hospital.getNumHospital()).arr.remove(i);
+                    tree.searchTree(hospital.getNumHospital()).list.remove(i);
                     for(int j = 0; j < hospitalArr.size(); j++){
                         if((hospitalArr.get(j).getSurname() + hospitalArr.get(j).getName() +
                                 hospitalArr.get(j).getPatronymic()).equals(fio)){
@@ -294,6 +302,6 @@ public class Main {
         }
     }
     public static ArrayList<Hospitals> searchHospital(int numHospital){
-        return tree.searchTree(numHospital).arr;
+        return toArrayList(tree.searchTree(numHospital).list);
     }
 }

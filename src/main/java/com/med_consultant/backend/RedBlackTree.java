@@ -1,10 +1,5 @@
 package com.med_consultant.backend;
 
-import com.med_consultant.backend.Hospitals;
-import com.med_consultant.backend.Node;
-
-import java.util.ArrayList;
-
 public class RedBlackTree {
     private Node root;
     private final Node TNULL;
@@ -21,11 +16,11 @@ public class RedBlackTree {
         if (node != TNULL) {
             LNR_RemoveHelper(node.left, fio);
             //int i = 0;
-            if(node.arr != null){
-                for(int i = 0; i < node.arr.size(); i++){
-                    Hospitals hospital = node.arr.get(i);
+            if(node.list != null){
+                for(int i = 0; i < node.list.size(); i++){
+                    Hospitals hospital = node.list.get(i);
                     if((hospital.getSurname() + hospital.getName() + hospital.getPatronymic()).equals(fio)){
-                        node.arr.remove(i);
+                        node.list.remove(i);
                         break;
                     }
                 }
@@ -331,7 +326,7 @@ public class RedBlackTree {
     public void insert(int key, Hospitals hospital){
         Node cur = searchTree(key);
         if(cur != TNULL){
-            cur.arr.add(hospital);
+            cur.list.addFirst(hospital);
         }else{
             Node node = new Node();
             node.parent = null;
@@ -339,8 +334,8 @@ public class RedBlackTree {
             node.left = TNULL;
             node.right = TNULL;
             node.color = 1;
-            node.arr = new ArrayList<>();
-            node.arr.add(hospital);
+            node.list = new LinkedList();
+            node.list.addFirst(hospital);
 
             if (node.key == searchTree(node.key).key) {
                 System.out.println("Тут уже есть такие!");

@@ -20,7 +20,7 @@ public class RemoveHospitalController {
     @FXML
     public void clickRemove(){
         String input = surname.getText() + " " + name.getText() + " " + patronymic.getText() + " " + numHospital.getText();
-        if(!(numHospital.getText().equals("") || surname.getText().equals("") || name.getText().equals("") ||
+        if((numHospital.getText().equals("") || surname.getText().equals("") || name.getText().equals("") ||
                 patronymic.getText().equals(""))){
             error.setText("Введите данные для удаления!");
         }else{
