@@ -44,9 +44,13 @@ public class ReportController implements Initializable {
         }else{
             try{
                 ArrayList<Hospitals> res = Main.search(Integer.parseInt(numHospital.getText()), speciality.getText());
-                ObservableList<Hospitals> hospitals = FXCollections.observableArrayList(res);
-                table.setItems(hospitals);
-                error.setText("");
+                if(res.size() == 0){
+                    error.setText("Врачи не найдены!");
+                }else{
+                    ObservableList<Hospitals> hospitals = FXCollections.observableArrayList(res);
+                    table.setItems(hospitals);
+                    error.setText("");
+                }
             }catch (Exception ex){
                 error.setText("Данные не корректны!");
             }

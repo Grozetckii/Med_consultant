@@ -54,13 +54,19 @@ public class LinkedList {
     }
 
     public void remove(int i){
-        if (isEmpty(head)) {
+        /*if (isEmpty(head)) {
 
-        }
-        else {
-            ListNode tempHead = head;
+        }*/
+        ListNode tempHead = head;
+        if (head == head.next)
+        {
+            head = null;
+        }else if(i == 0){
+            delFirst();
+        }else {
+
             //int tempI = 0;
-            for(int tempI = 0; tempI < i; tempI++){
+            for(int tempI = 0; tempI < i - 1; tempI++){
                 tempHead = tempHead.next;
             }
             tempHead.next = tempHead.next.next;
