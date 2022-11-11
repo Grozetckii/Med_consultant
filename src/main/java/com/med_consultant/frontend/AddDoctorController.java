@@ -57,7 +57,7 @@ public class AddDoctorController {
     }
 
     public boolean judgeContainsStrName(String str) {
-        String regex="[а-яА-Яa-zA-Z]+$";
+        String regex="[А-ЯA-Z]{1,1}[а-яА-Яa-zA-Z]+$";
         Matcher match = Pattern.compile(regex).matcher(str);
         if (str.length() > 30)
             return false;

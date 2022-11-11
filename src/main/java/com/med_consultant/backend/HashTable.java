@@ -5,17 +5,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class HashTable {
-    private final ArrayList<ArrayList<Doctors>> hashTableArr;
-    //private HashSet<String> setKey;
+    private final ArrayList<LinkedList> hashTableArr;
     private final int h;
     
     
     public HashTable()
     {
-        h = 1000;
+        h = 100;
         hashTableArr = new ArrayList<>();
         for (int i = 0; i < h; i++) {
-            hashTableArr.add(new ArrayList<>());
+            hashTableArr.add(new LinkedList());
         }
     }
 
@@ -23,7 +22,7 @@ public class HashTable {
         return h;
     }
 
-    public ArrayList<ArrayList<Doctors>> getHashTableArr() {
+    public ArrayList<LinkedList> getHashTableArr() {
         return hashTableArr;
     }
 
@@ -66,14 +65,14 @@ public class HashTable {
 
     public void add(int hash, Doctors doctor)
     {
-        hashTableArr.get(hash).add(doctor);
+        hashTableArr.get(hash).addFirst(doctor);
     }
 
 
     public int collision(int hash, String key)
     {
         for (int i = 0; i < hashTableArr.get(hash).size(); i++) {
-            Doctors doc = hashTableArr.get(hash).get(i);
+            Doctors doc = hashTableArr.get(hash).getDoctor(i);
             if (Objects.equals(doc.getSurname() + doc.getName() + doc.getPatronymic(),key)) {
                 return i;
             }
@@ -105,7 +104,7 @@ public class HashTable {
             return doctor;
         }
         else {
-            return hashTableArr.get(hash).get(id);
+            return hashTableArr.get(hash).getDoctor(id);
         }
 
     }
@@ -119,7 +118,7 @@ public class HashTable {
             System.out.println(" |     " + i + "      |");
             for (int j = 0; j < hashTableArr.get(i).size(); j++) {
                 System.out.print(" |            |");
-                printDoctors(hashTableArr.get(i).get(j));
+                printDoctors(hashTableArr.get(i).getDoctor(j));
             }
             System.out.println("  -------------------------------------------------------------------------------------------------");
         }

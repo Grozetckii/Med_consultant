@@ -33,6 +33,25 @@ public class LinkedList {
         }
     }
 
+    public void addFirst(Doctors data){
+        ListNode temp = new ListNode();
+        if (isEmpty(head)) {
+            temp.data2 = data;
+            head = temp;
+            head.next = head;
+        }
+        else {
+            ListNode current = head;
+            while (current.next != head) {
+                current = current.next;
+            }
+            temp.next = head;
+            current.next = temp;
+            temp.data2 = data;
+            head = temp;
+        }
+    }
+
     void delFirst() {
         ListNode trash;
         if (isEmpty(head)) {
@@ -100,6 +119,20 @@ public class LinkedList {
                 tempHead = tempHead.next;
             }
             return tempHead.data;
+        }
+    }
+
+    public Doctors getDoctor(int i){
+        if (isEmpty(head)) {
+            return null;
+        }
+        else {
+            ListNode tempHead = head;
+            //int tempI = 0;
+            for(int tempI = 0; tempI < i; tempI++){
+                tempHead = tempHead.next;
+            }
+            return tempHead.data2;
         }
     }
 

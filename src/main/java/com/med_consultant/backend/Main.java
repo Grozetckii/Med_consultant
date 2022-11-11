@@ -170,7 +170,7 @@ public class Main {
             boolean flag = true;
             if(id != -1){
                 for(int j = id; j < hashTable.getHashTableArr().get(hash).size(); j++){
-                    Doctors doc = hashTable.getHashTableArr().get(hash).get(j);
+                    Doctors doc = hashTable.getHashTableArr().get(hash).getDoctor(j);
                     if(doc.getSpeciality().equals(speciality)){
                         flag = false;
                         break;
